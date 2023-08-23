@@ -19,7 +19,7 @@ app.use(
   })
 );
 
-app.use(cookieParser);
+app.use(cookieParser());
 
 //Importing and using routes
 
