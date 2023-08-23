@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import jwt from "jsonwebtoken";
+import bcrpyt from "bcrypt";
 
 const schema = new mongoose.Schema({
   name: {
@@ -57,10 +58,19 @@ const schema = new mongoose.Schema({
   ResetPasswordExpire: String,
 });
 
+schema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await bcrpyt.hash(this.password, 10);
+  next();
+});
+
 schema.methods.getJwtToken = function () {
   return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
     expiresIn: "15d",
   });
+};
+schema.methods.comparePassword = async function (password) {
+  return await bcrpyt.compare(password, this.password);
 };
 
 export const User = mongoose.model("User", schema);
