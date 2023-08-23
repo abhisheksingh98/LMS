@@ -10,6 +10,15 @@ config({
 
 const app = express();
 
+//Using Middlewares
+
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
 //Importing and using routes
 
 app.use("/api/v1", course);
