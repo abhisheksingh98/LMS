@@ -50,7 +50,9 @@ const Header = () => {
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay backdropFilter={"blur(2px)"} />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth={"1px"}>COURSE EXPERT</DrawerHeader>
+          <DrawerHeader borderBottomWidth={"1px"}>
+            FULL STACK MASTERS
+          </DrawerHeader>
           <DrawerBody>
             <VStack spacing={"4"} alignItems="flex-start">
               <ButtonLinks onClose={onClose} url="/" title="Home" />
