@@ -1,9 +1,11 @@
 import express from "express";
 import {
+  forgotPassword,
   getMyProfile,
   login,
   logout,
   register,
+  resetPassword,
   updatePassword,
   updateProfile,
   updateProfilePicture,
@@ -39,5 +41,9 @@ router
   .put(isAuthenticated, updateProfilePicture);
 
 //forgot password
+
+router.route("/forgotpassword").post(forgotPassword);
+
+router.route("/resetpassword/:token").put(resetPassword);
 
 export default router;
